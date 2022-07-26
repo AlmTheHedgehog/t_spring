@@ -19,14 +19,14 @@ class BooksListComponent extends Component {
     render() {
         return (
             <div>
-                <h2 className='text-center'>Whole library</h2>
+                <h1 className='text-center'>Whole library</h1>
                 <div className='row'>
                     <table className='table table-bordered'>
                         <thead>
                             <tr>
                                 <th scope="col">Title</th>
                                 <th scope="col">Author</th>
-                                <th scope="col">Year</th>
+                                <th scope="col">Publication date</th>
                                 <th scope="col">Publisher</th>
                                 <th scope="col">ISBN</th>
                             </tr>
@@ -36,11 +36,11 @@ class BooksListComponent extends Component {
                                 this.state.books.map(
                                     book =>
                                     <tr key={book.id}>
-                                        <th scope='row'>{book.title}</th>
-                                        <th scope='row'>{book.author}</th>
-                                        <th scope='row'>{book.publishDate}</th>
-                                        <th scope='row'>{book.publisher}</th>
-                                        <th scope='row'>{book.isbn}</th>
+                                        <td>{book.title}</td>
+                                        <td>{book.author}</td>
+                                        <td>{book.publishDate}</td>
+                                        <td>{book.publisher}</td>
+                                        <td>{book.isbn}</td>
                                     </tr>
                                 )
                             }
