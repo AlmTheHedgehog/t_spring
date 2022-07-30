@@ -1,5 +1,6 @@
 package com.t_spring.library_manager.model;
 
+import java.io.Console;
 import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,6 @@ public class book {
     public book(){
         
     }
-
     public book(String title, String author, LocalDate publishDate) {
         this.title = title;
         this.author = author;
@@ -32,12 +32,17 @@ public class book {
         this.ISBN = "N/A";
     }
     public book(String title, String author, LocalDate publishDate, String publisher, String ISBN) {
-        this.title = title;
-        this.author = author;
-        this.publishDate = publishDate;
-        this.publisher = publisher;
-        this.ISBN = ISBN;
+        this(title, author, publishDate);
+        System.out.println("yeah");
+        if(!publisher.isEmpty()){
+            this.publisher = publisher;
+        }
+        if(!ISBN.isEmpty()){
+            this.ISBN = ISBN;
+        }
+        
     }
+
     public long getId() {
         return id;
     }

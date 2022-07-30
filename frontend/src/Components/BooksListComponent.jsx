@@ -8,12 +8,17 @@ class BooksListComponent extends Component {
         this.state = {
             books:[]
         }
+        this.getDate=this.getDate.bind(this);
     }
 
     componentDidMount(){
         BookService.getBooks().then((res)=>{
             this.setState({books: res.data});
         });
+    }
+
+    getDate(curBook){
+        return curBook.publishDate.slice(0, 4);
     }
 
     render() {
@@ -26,7 +31,7 @@ class BooksListComponent extends Component {
                             <tr>
                                 <th scope="col">Title</th>
                                 <th scope="col">Author</th>
-                                <th scope="col">Publication date</th>
+                                <th scope="col" className='text-center'>Year</th>
                                 <th scope="col">Publisher</th>
                                 <th scope="col">ISBN</th>
                             </tr>
@@ -36,11 +41,11 @@ class BooksListComponent extends Component {
                                 this.state.books.map(
                                     book =>
                                     <tr key={book.id}>
-                                        <td>{book.title}</td>
-                                        <td>{book.author}</td>
-                                        <td>{book.publishDate}</td>
-                                        <td>{book.publisher}</td>
-                                        <td>{book.isbn}</td>
+                                        <td className='w-30'>{book.title}</td>
+                                        <td className='w-20'>{book.author}</td>
+                                        <td className='w-5 text-center'>{this.getDate(book)}</td>
+                                        <td className='w-25'>{book.publisher}</td>
+                                        <td className='w-20'>{book.isbn}</td>
                                     </tr>
                                 )
                             }
