@@ -6,7 +6,8 @@ import BooksListComponent from './Components/BooksListComponent';
 import HeaderComponent from './Components/HeaderComponent';
 import FooterComponent from './Components/FooterComponent';
 import NotFoundComponent from './Components/NotFoundComponent';
-import AddBook from './Components/AddBook';
+import AddBookComponent from './Components/AddBookComponent';
+import BookPageComponentRoute from './Components/BookPageComponentRoute';
 
 function App() {
   const navigate = useNavigate();
@@ -16,7 +17,8 @@ function App() {
       <div className = "container">
         <Routes>
           <Route path = "/allbooks" element = {<BooksListComponent/>}/>
-          <Route path = "/newbook" element = {<AddBook navigate={navigate}/>}/>
+          <Route path = "/newbook" element = {<AddBookComponent navigate={navigate}/>}/>
+          <Route path="/book/:BookId" element={<BookPageComponentRoute/>} />
           <Route path="*" element={<NotFoundComponent/>}/>
         </Routes>
       </div>

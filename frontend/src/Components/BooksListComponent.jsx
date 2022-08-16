@@ -41,7 +41,9 @@ class BooksListComponent extends Component {
                                 this.state.books.map(
                                     book =>
                                     <tr key={book.id}>
-                                        <td className='w-30'>{book.title}</td>
+                                        <td className='w-30'>
+                                            <a className='simple-link' href={'book/' + book.id}>{book.title}</a>
+                                        </td>
                                         <td className='w-20'>{book.author}</td>
                                         <td className='w-5 text-center'>{this.getDate(book)}</td>
                                         <td className='w-25'>{book.publisher}</td>

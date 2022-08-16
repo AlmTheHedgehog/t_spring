@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import BookService from '../services/BookService';
 import Validator from '../validation/Validator';
 
-class AddBook extends Component {
+class AddBookComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -39,8 +39,9 @@ class AddBook extends Component {
             
             let newBook = {title: this.state.title, author: this.state.author, publishDate: this.state.publishDate,
                 publisher: publisher, isbn: isbn};
-            BookService.addBook(newBook);
-            this.props.navigate('/allbooks');
+            BookService.addBook(newBook).then(()=>{
+                this.props.navigate('/allbooks');
+            })
         }
     }
 
@@ -152,4 +153,4 @@ class AddBook extends Component {
     }//
 }
 
-export default AddBook;
+export default AddBookComponent;
