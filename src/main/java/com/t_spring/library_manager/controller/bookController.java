@@ -27,13 +27,12 @@ public class bookController {
     private BookRepository bookRepository;
 
     @GetMapping("/books")
-    public List<book> getAllBooks(){
-        return bookRepository.findAll();
-    }
-
-    @RequestMapping("/books")
-    public List<book> getBooksOfAuthor(@RequestParam("author") String author){
-        return bookRepository.findAllByAuthor(author);
+    public List<book> getAllBooks(@RequestParam(name = "author", defaultValue="") String author){
+        if(author.isEmpty()){
+            return bookRepository.findAll();
+        }else{
+            return bookRepository.findAllByAuthor(author);
+        }
     }
 
     @PostMapping("/books")
