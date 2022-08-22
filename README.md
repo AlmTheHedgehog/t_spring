@@ -1,4 +1,4 @@
-# Library manager
+# Library manager (Backend)
 
 A web application for managing a virtual library
 
