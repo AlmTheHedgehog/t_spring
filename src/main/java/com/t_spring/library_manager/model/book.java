@@ -63,6 +63,9 @@ public class book {
     public LocalDate getPublishDate() {
         return publishDate;
     }
+    public int getPublishYear() {
+        return publishDate.getYear();
+    }
     public void setPublishDate(LocalDate publishDate) {
         this.publishDate = publishDate;
     }

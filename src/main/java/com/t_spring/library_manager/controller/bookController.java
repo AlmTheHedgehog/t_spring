@@ -1,5 +1,6 @@
 package com.t_spring.library_manager.controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,48 @@ import com.t_spring.library_manager.exeption.ResourceNotFoundExeption;
 import com.t_spring.library_manager.model.book;
 import com.t_spring.library_manager.repository.BookRepository;
 
-//@CrossOrigin(origins = "https://library-online-t.herokuapp.com")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://library-online-t.herokuapp.com")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class bookController {
     @Autowired
     private BookRepository bookRepository;
 
+
+    
+    /**
+     * @param author - filtering by 1 author(show all books if field is empty)
+     * @param typeOfSorting - sorting specified method(down sort by id if field is empty)
+     * <ul>
+     *      <li>{@code DownByYear} - sorts from the oldest to the newest book</li>
+     *      <li>{@code UpByYear} - sorts from the newest to the oldest book</li>
+     * </ul> 
+     * @return List of books which can be sorted and filtered according to parameters
+     */
     @GetMapping("/books")
-    public List<book> getAllBooks(@RequestParam(name = "author", defaultValue="") String author){
+    public List<book> getAllBooks(@RequestParam(name = "author", defaultValue="") String author,
+                                @RequestParam(name = "sorting", defaultValue="") String typeOfSorting){
+        List<book> BooksList;
         if(author.isEmpty()){
-            return bookRepository.findAll();
+            BooksList = bookRepository.findAll();
         }else{
-            return bookRepository.findAllByAuthor(author);
+            BooksList =  bookRepository.findAllByAuthor(author);
+        }
+
+        if(typeOfSorting.isEmpty()){
+            return BooksList;
+        }else{
+            if(typeOfSorting.equals("DownByYear")){
+                BooksList.sort(Comparator.comparingInt(book::getPublishYear));
+            }else if(typeOfSorting.equals("UpByYear")){
+                BooksList.sort(Comparator.comparingInt(book::getPublishYear).reversed());
+            }
+
+            return BooksList;
         }
     }
-
+    
     @PostMapping("/books")
     public book createBook(@RequestBody book newBook){
         return bookRepository.save(newBook);
