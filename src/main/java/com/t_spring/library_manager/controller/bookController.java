@@ -52,13 +52,7 @@ public class bookController {
         if(typeOfSorting.isEmpty()){
             return BooksList;
         }else{
-            if(typeOfSorting.equals("DownByYear")){
-                BooksList.sort(Comparator.comparingInt(book::getPublishYear));
-            }else if(typeOfSorting.equals("UpByYear")){
-                BooksList.sort(Comparator.comparingInt(book::getPublishYear).reversed());
-            }
-
-            return BooksList;
+            return SortingController.sort(BooksList, typeOfSorting);
         }
     }
     
