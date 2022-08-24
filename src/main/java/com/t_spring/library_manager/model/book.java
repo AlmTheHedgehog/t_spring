@@ -57,6 +57,10 @@ public class book {
     public String getAuthor() {
         return author;
     }
+    public String convAuthorLowerCase() {
+        //make invisible for repositiry getAll
+        return author.toLowerCase();
+    }
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -77,6 +81,16 @@ public class book {
     }
     public String getISBN() {
         return ISBN;
+    }
+    public long convISBNlong() {
+        //make invisible for repositiry getAll
+        String longISBNstring = "";
+        for(char symbol:ISBN.toCharArray()){
+            if((symbol >= 48) && (symbol <= 57)){
+                longISBNstring = longISBNstring + symbol;
+            }
+        }
+        return Long.parseLong(longISBNstring);
     }
     public void setISBN(String iSBN) {
         ISBN = iSBN;

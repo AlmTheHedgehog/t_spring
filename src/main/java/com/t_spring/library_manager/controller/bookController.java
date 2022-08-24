@@ -20,15 +20,13 @@ import com.t_spring.library_manager.exeption.ResourceNotFoundExeption;
 import com.t_spring.library_manager.model.book;
 import com.t_spring.library_manager.repository.BookRepository;
 
-@CrossOrigin(origins = "https://library-online-t.herokuapp.com")
-//@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "https://library-online-t.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class bookController {
     @Autowired
     private BookRepository bookRepository;
-
-
     
     /**
      * @param author - filtering by 1 author(show all books if field is empty)
@@ -36,6 +34,14 @@ public class bookController {
      * <ul>
      *      <li>{@code DownByYear} - sorts from the oldest to the newest book</li>
      *      <li>{@code UpByYear} - sorts from the newest to the oldest book</li>
+     *      <li>{@code DownByTitle} - sorts by title from A ot Z</li>
+     *      <li>{@code UpByTitle} - sorts by title from Z ot A</li>
+     *      <li>{@code DownByAuthor} - sorts by author from A ot Z</li>
+     *      <li>{@code UpByAuthor} - sorts by author from Z ot A</li>
+     *      <li>{@code DownByPublisher} - sorts by publisher from A ot Z</li>
+     *      <li>{@code UpByPublisher} - sorts by publisher from Z ot A</li>
+     *      <li>{@code DownByISBN} - sorts by ISBN from the smallest ot the biggest</li>
+     *      <li>{@code UpByISBN} - sorts by ISBN from the biggest ot the smallest</li>
      * </ul> 
      * @return List of books which can be sorted and filtered according to parameters
      */
