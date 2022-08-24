@@ -20,8 +20,8 @@ import com.t_spring.library_manager.exeption.ResourceNotFoundExeption;
 import com.t_spring.library_manager.model.book;
 import com.t_spring.library_manager.repository.BookRepository;
 
-//@CrossOrigin(origins = "https://library-online-t.herokuapp.com")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://library-online-t.herokuapp.com")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class bookController {
